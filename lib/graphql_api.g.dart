@@ -41,3 +41,29 @@ Map<String, dynamic> _$EmployeeDataArgumentsToJson(
     <String, dynamic>{
       'id': instance.id,
     };
+
+CompaniesData _$CompaniesDataFromJson(Map<String, dynamic> json) {
+  return CompaniesData()
+    ..allCompanies = (json['allCompanies'] as List)
+        ?.map((e) =>
+            e == null ? null : Company.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$CompaniesDataToJson(CompaniesData instance) =>
+    <String, dynamic>{
+      'allCompanies': instance.allCompanies?.map((e) => e?.toJson())?.toList(),
+    };
+
+Company _$CompanyFromJson(Map<String, dynamic> json) {
+  return Company()
+    ..id = json['id'] as String
+    ..name = json['name'] as String
+    ..industry = json['industry'] as String;
+}
+
+Map<String, dynamic> _$CompanyToJson(Company instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'industry': instance.industry,
+    };

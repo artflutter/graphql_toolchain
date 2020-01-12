@@ -105,3 +105,90 @@ class EmployeeDataQuery
   @override
   EmployeeData parse(Map<String, dynamic> json) => EmployeeData.fromJson(json);
 }
+
+@JsonSerializable(explicitToJson: true)
+class CompaniesData with EquatableMixin {
+  CompaniesData();
+
+  factory CompaniesData.fromJson(Map<String, dynamic> json) =>
+      _$CompaniesDataFromJson(json);
+
+  List<Company> allCompanies;
+
+  @override
+  List<Object> get props => [allCompanies];
+  Map<String, dynamic> toJson() => _$CompaniesDataToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Company with EquatableMixin {
+  Company();
+
+  factory Company.fromJson(Map<String, dynamic> json) =>
+      _$CompanyFromJson(json);
+
+  String id;
+
+  String name;
+
+  String industry;
+
+  @override
+  List<Object> get props => [id, name, industry];
+  Map<String, dynamic> toJson() => _$CompanyToJson(this);
+}
+
+class CompaniesDataQuery extends GraphQLQuery<CompaniesData, JsonSerializable> {
+  CompaniesDataQuery();
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'CompaniesData'),
+        variableDefinitions: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'allCompanies'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: 'industry'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null)
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'CompaniesData';
+
+  @override
+  List<Object> get props => [document, operationName];
+  @override
+  CompaniesData parse(Map<String, dynamic> json) =>
+      CompaniesData.fromJson(json);
+}

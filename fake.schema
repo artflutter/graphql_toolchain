@@ -12,6 +12,7 @@
 # Developed with ❤️ by APIs.guru | https://github.com/APIs-guru/graphql-faker
 
 type Company {
+  id: ID! @fake(type: uuid)
   name: String @fake(type:companyName)
   industry: String @examples(values: ["IT", "Manufacturing", "Medicine", "Media"])
   employees: [Employee!] @listLength(min: 5, max: 10)

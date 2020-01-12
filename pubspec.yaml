@@ -19,6 +19,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  graphql_flutter: ^3.0.0-beta.3
+  path_provider: ^1.5.1
+  equatable: ^1.0.2
+  json_serializable: ^3.2.3
+  gql: 0.12.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -27,6 +32,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.7.2
+  artemis: ^2.1.4
 
 
 # For information on the generic Dart part of this file, see the

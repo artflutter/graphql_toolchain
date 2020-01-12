@@ -1,0 +1,6 @@
+query EmployeeData($id: ID!) {
+    employee(id: $id) {
+        firstName
+        id
+    }
+}

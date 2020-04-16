@@ -3,11 +3,13 @@ targets:
     sources:
       - lib/**
       - graphql/**
-      - my.schema.json
+      - my.schema.graphql
     builders:
       artemis:
         options:
+          fragments_glob: graphql/fragments/common.graphql
           schema_mapping:
-            - schema: my.schema.json
+            - schema: my.schema.graphql
               queries_glob: graphql/*.graphql
-              output: lib/graphql_api.dart
+              output: lib/models/graphql/graphql_api.dart
+              naming_scheme: pathedWithFields

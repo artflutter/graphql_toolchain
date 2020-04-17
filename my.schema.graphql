@@ -6,7 +6,7 @@ schema {
 
 type Company {
     employees: [Employee!]
-    id: ID
+    id: ID!
     industry: String
     name: String
 }
@@ -15,13 +15,14 @@ type Employee {
     address: String
     company: Company
     firstName: String
-    id: ID
+    id: ID!
     lastName: String
     subordinates: [Employee!]
 }
 
 type Query {
     allCompanies: [Company!]
+    allCompaniesPaginated(pagination: PaginationInput!): [Company!]
     company(id: ID): Company
     employee(id: ID): Employee
 }
@@ -167,6 +168,11 @@ enum fake__loremSize {
     sentences
     word
     words
+}
+
+input PaginationInput {
+    limit: Int!
+    offset: Int!
 }
 
 input fake__color {

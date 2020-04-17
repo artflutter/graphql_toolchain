@@ -27,8 +27,14 @@ type Employee {
   company: Company
 }
 
+input PaginationInput {
+  limit: Int!
+  offset: Int!
+}
+
 type Query {
   employee(id: ID): Employee
   company(id: ID): Company
   allCompanies: [Company!]
+  allCompaniesPaginated(pagination: PaginationInput!): [Company!] @listLength(min: 25, max: 25)
 }

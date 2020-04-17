@@ -1,16 +1,47 @@
 # graphql_toolchain
 
-A new Flutter application.
+This is a demo app that showcases the use of GraphQL toolchain in Flutter.
+
+## Goal
+- generate dart types and classes which covers GraphQL API queries
+- local schema update
+- autocomplete and validation of GraphQL queries
+- ability to work with API without waiting of backend implementation
+
+## Tooling
+- [graphql-flutter](https://pub.dev/packages/graphql_flutter)
+- [artemis](https://pub.dev/packages/artemis)
+- [graphql-faker](https://github.com/APIs-guru/graphql-faker)
+
+## IDE & plugins
+- [Android Studio](https://developer.android.com/studio) or [VSCode](https://code.visualstudio.com/)
+- [JS Graphql](https://jimkyndemeyer.github.io/js-graphql-intellij-plugin/docs/getting-started) for Android Studio
+- [Prisma](https://jimkyndemeyer.github.io/js-graphql-intellij-plugin/docs/getting-started) for VSCode
+
+## Outcome
+I’m happy to find that there are a lot of positive changes in GraphQL ecosystem for flutter.  
+As a result we get fully functioning and pretty stable approach to work with GraphQL using  
+full power of types and autocompletion
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Start install `graphql-faker`
 
-A few resources to get you started if this is your first Flutter project:
+        npm install -g graphql-faker
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+    or
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+        yarn global add graphql-faker
+
+2. Start local `graphql` server `graphql-faker fake.schema --open`
+3. Dart types update
+
+        pub run build_runner build
+
+   or
+
+        flutter pub run build_runner build
+
+4. Start app
+
+        flutter run

@@ -22,7 +22,11 @@ class CompaniesPaginatedData$Query$AllCompaniesPaginated with EquatableMixin {
   String industry;
 
   @override
-  List<Object> get props => [id, name, industry];
+  @JsonKey(name: '__typename')
+  String $$typename;
+
+  @override
+  List<Object> get props => [id, name, industry, $$typename];
   Map<String, dynamic> toJson() =>
       _$CompaniesPaginatedData$Query$AllCompaniesPaginatedToJson(this);
 }
@@ -56,6 +60,44 @@ class PaginationInput with EquatableMixin {
   @override
   List<Object> get props => [limit, offset];
   Map<String, dynamic> toJson() => _$PaginationInputToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CompaniesData$Query$AllCompanies with EquatableMixin {
+  CompaniesData$Query$AllCompanies();
+
+  factory CompaniesData$Query$AllCompanies.fromJson(
+          Map<String, dynamic> json) =>
+      _$CompaniesData$Query$AllCompaniesFromJson(json);
+
+  String id;
+
+  String name;
+
+  String industry;
+
+  @override
+  @JsonKey(name: '__typename')
+  String $$typename;
+
+  @override
+  List<Object> get props => [id, name, industry, $$typename];
+  Map<String, dynamic> toJson() =>
+      _$CompaniesData$Query$AllCompaniesToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CompaniesData$Query with EquatableMixin {
+  CompaniesData$Query();
+
+  factory CompaniesData$Query.fromJson(Map<String, dynamic> json) =>
+      _$CompaniesData$QueryFromJson(json);
+
+  List<CompaniesData$Query$AllCompanies> allCompanies;
+
+  @override
+  List<Object> get props => [allCompanies];
+  Map<String, dynamic> toJson() => _$CompaniesData$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -142,40 +184,6 @@ class CompaniesPaginatedDataQuery extends GraphQLQuery<
   @override
   CompaniesPaginatedData$Query parse(Map<String, dynamic> json) =>
       CompaniesPaginatedData$Query.fromJson(json);
-}
-
-@JsonSerializable(explicitToJson: true)
-class CompaniesData$Query$AllCompanies with EquatableMixin {
-  CompaniesData$Query$AllCompanies();
-
-  factory CompaniesData$Query$AllCompanies.fromJson(
-          Map<String, dynamic> json) =>
-      _$CompaniesData$Query$AllCompaniesFromJson(json);
-
-  String id;
-
-  String name;
-
-  String industry;
-
-  @override
-  List<Object> get props => [id, name, industry];
-  Map<String, dynamic> toJson() =>
-      _$CompaniesData$Query$AllCompaniesToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class CompaniesData$Query with EquatableMixin {
-  CompaniesData$Query();
-
-  factory CompaniesData$Query.fromJson(Map<String, dynamic> json) =>
-      _$CompaniesData$QueryFromJson(json);
-
-  List<CompaniesData$Query$AllCompanies> allCompanies;
-
-  @override
-  List<Object> get props => [allCompanies];
-  Map<String, dynamic> toJson() => _$CompaniesData$QueryToJson(this);
 }
 
 class CompaniesDataQuery

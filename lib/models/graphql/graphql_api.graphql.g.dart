@@ -12,7 +12,8 @@ CompaniesPaginatedData$Query$AllCompaniesPaginated
   return CompaniesPaginatedData$Query$AllCompaniesPaginated()
     ..id = json['id'] as String
     ..name = json['name'] as String
-    ..industry = json['industry'] as String;
+    ..industry = json['industry'] as String
+    ..$$typename = json['__typename'] as String;
 }
 
 Map<String, dynamic> _$CompaniesPaginatedData$Query$AllCompaniesPaginatedToJson(
@@ -21,6 +22,7 @@ Map<String, dynamic> _$CompaniesPaginatedData$Query$AllCompaniesPaginatedToJson(
       'id': instance.id,
       'name': instance.name,
       'industry': instance.industry,
+      '__typename': instance.$$typename,
     };
 
 CompaniesPaginatedData$Query _$CompaniesPaginatedData$QueryFromJson(
@@ -54,27 +56,13 @@ Map<String, dynamic> _$PaginationInputToJson(PaginationInput instance) =>
       'offset': instance.offset,
     };
 
-CompaniesPaginatedDataArguments _$CompaniesPaginatedDataArgumentsFromJson(
-    Map<String, dynamic> json) {
-  return CompaniesPaginatedDataArguments(
-    pagination: json['pagination'] == null
-        ? null
-        : PaginationInput.fromJson(json['pagination'] as Map<String, dynamic>),
-  );
-}
-
-Map<String, dynamic> _$CompaniesPaginatedDataArgumentsToJson(
-        CompaniesPaginatedDataArguments instance) =>
-    <String, dynamic>{
-      'pagination': instance.pagination?.toJson(),
-    };
-
 CompaniesData$Query$AllCompanies _$CompaniesData$Query$AllCompaniesFromJson(
     Map<String, dynamic> json) {
   return CompaniesData$Query$AllCompanies()
     ..id = json['id'] as String
     ..name = json['name'] as String
-    ..industry = json['industry'] as String;
+    ..industry = json['industry'] as String
+    ..$$typename = json['__typename'] as String;
 }
 
 Map<String, dynamic> _$CompaniesData$Query$AllCompaniesToJson(
@@ -83,6 +71,7 @@ Map<String, dynamic> _$CompaniesData$Query$AllCompaniesToJson(
       'id': instance.id,
       'name': instance.name,
       'industry': instance.industry,
+      '__typename': instance.$$typename,
     };
 
 CompaniesData$Query _$CompaniesData$QueryFromJson(Map<String, dynamic> json) {
@@ -99,4 +88,19 @@ Map<String, dynamic> _$CompaniesData$QueryToJson(
         CompaniesData$Query instance) =>
     <String, dynamic>{
       'allCompanies': instance.allCompanies?.map((e) => e?.toJson())?.toList(),
+    };
+
+CompaniesPaginatedDataArguments _$CompaniesPaginatedDataArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return CompaniesPaginatedDataArguments(
+    pagination: json['pagination'] == null
+        ? null
+        : PaginationInput.fromJson(json['pagination'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CompaniesPaginatedDataArgumentsToJson(
+        CompaniesPaginatedDataArguments instance) =>
+    <String, dynamic>{
+      'pagination': instance.pagination?.toJson(),
     };

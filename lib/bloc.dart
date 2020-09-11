@@ -133,15 +133,15 @@ class _BlocState extends State<Bloc> {
 }
 
 String parseOperationException(OperationException error) {
-  if (error.clientException != null) {
-    final exception = error.clientException;
-
-    if (exception is NetworkException) {
-      return 'Failed to connect to ${exception.uri}';
-    } else {
-      return exception.toString();
-    }
-  }
+  // if (error.clientException != null) {
+  //   final exception = error.clientException;
+  //
+  //   if (exception is NetworkException) {
+  //     return 'Failed to connect to ${exception.uri}';
+  //   } else {
+  //     return exception.toString();
+  //   }
+  // }
 
   if (error.graphqlErrors != null && error.graphqlErrors.isNotEmpty) {
     final errors = error.graphqlErrors;

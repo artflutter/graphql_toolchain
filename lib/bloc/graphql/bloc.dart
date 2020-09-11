@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:graphql/client.dart';
 import 'package:meta/meta.dart';
-import 'package:graphql/internal.dart';
 
 import 'event.dart';
 import 'state.dart';
@@ -16,10 +15,10 @@ abstract class GraphqlBloc<T> extends Bloc<GraphqlEvent<T>, GraphqlState<T>> {
     result = client.watchQuery(options);
 
     result.stream.listen((QueryResult result) {
-      if (!result.loading && result.data != null) {
+      if (!result.isLoading && result.data != null) {
         add(
           GraphqlLoadedEvent<T>(
-            data: parseData(result.data as Map<String, dynamic>),
+            data: parseData(result.data),
             result: result,
           ),
         );

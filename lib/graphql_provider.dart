@@ -10,11 +10,11 @@ GraphQLClient getClient({
   @required String uri,
   String subscriptionUri,
 }) {
-  Link link = HttpLink(uri: uri);
+  Link link = HttpLink(uri);
 
   if (subscriptionUri != null) {
     final WebSocketLink websocketLink = WebSocketLink(
-      url: subscriptionUri,
+      subscriptionUri,
       config: SocketClientConfig(
         autoReconnect: true,
         inactivityTimeout: Duration(seconds: 30),
@@ -25,7 +25,7 @@ GraphQLClient getClient({
   }
 
   return GraphQLClient(
-    cache: cache,
+    cache: GraphQLCache(store: HiveStore()),
     link: link,
   );
 }
@@ -41,18 +41,14 @@ String uuidFromObject(Object object) {
   return null;
 }
 
-final OptimisticCache cache = OptimisticCache(
-  dataIdFromObject: uuidFromObject,
-);
-
 ValueNotifier<GraphQLClient> clientFor({
   @required String uri,
   String subscriptionUri,
 }) {
-  Link link = HttpLink(uri: uri);
+  Link link = HttpLink(uri);
   if (subscriptionUri != null) {
     final WebSocketLink websocketLink = WebSocketLink(
-      url: subscriptionUri,
+      subscriptionUri,
       config: SocketClientConfig(
         autoReconnect: true,
         inactivityTimeout: Duration(seconds: 30),
@@ -64,7 +60,7 @@ ValueNotifier<GraphQLClient> clientFor({
 
   return ValueNotifier<GraphQLClient>(
     GraphQLClient(
-      cache: cache,
+      cache: GraphQLCache(store: HiveStore()),
       link: link,
     ),
   );

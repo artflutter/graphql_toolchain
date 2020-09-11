@@ -8,6 +8,7 @@ class Simple extends StatefulWidget {
 }
 
 class _SimpleState extends State<Simple> {
+  int _counter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,18 +17,20 @@ class _SimpleState extends State<Simple> {
       ),
       body: Query(
         options: QueryOptions(
-          documentNode: CompaniesDataQuery().document,
+          fetchPolicy: FetchPolicy.cacheAndNetwork,
+          document: CompaniesDataQuery().document,
         ),
         builder: (
           QueryResult result, {
           Future<QueryResult> Function() refetch,
           FetchMore fetchMore,
         }) {
+          print(result.source);
           if (result.hasException) {
             return Text(result.exception.toString());
           }
 
-          if (result.loading) {
+          if (result.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -39,9 +42,13 @@ class _SimpleState extends State<Simple> {
           return ListView.builder(
             itemBuilder: (_, index) {
               return ListTile(
-                leading: Icon(Icons.card_travel),
+                leading: Text(_counter.toString()),
                 title: Text(allCompanies[index].name),
                 subtitle: Text(allCompanies[index].industry),
+                trailing: FlatButton.icon(
+                    onPressed: () => setState(() => _counter++),
+                    icon: Icon(Icons.plus_one),
+                    label: Text('')),
               );
             },
             itemCount: allCompanies.length,

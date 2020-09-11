@@ -1,11 +1,16 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:graphql_toolchain/bloc.dart';
 import 'package:graphql_toolchain/graphql_provider.dart';
 import 'package:graphql_toolchain/simple.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initHiveForFlutter();
+  runApp(MyApp());
+}
 
 String get host {
   if (Platform.isAndroid) {

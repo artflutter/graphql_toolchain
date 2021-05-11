@@ -6,101 +6,83 @@ part of 'graphql_api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CompaniesPaginatedData$Query$AllCompaniesPaginated
-    _$CompaniesPaginatedData$Query$AllCompaniesPaginatedFromJson(
-        Map<String, dynamic> json) {
-  return CompaniesPaginatedData$Query$AllCompaniesPaginated()
-    ..id = json['id'] as String
-    ..name = json['name'] as String
-    ..industry = json['industry'] as String
-    ..$$typename = json['__typename'] as String;
+GetPokemon$Query$Pokemon _$GetPokemon$Query$PokemonFromJson(
+    Map<String, dynamic> json) {
+  return GetPokemon$Query$Pokemon()
+    ..number = json['number'] as String
+    ..name = json['name'] as String;
 }
 
-Map<String, dynamic> _$CompaniesPaginatedData$Query$AllCompaniesPaginatedToJson(
-        CompaniesPaginatedData$Query$AllCompaniesPaginated instance) =>
+Map<String, dynamic> _$GetPokemon$Query$PokemonToJson(
+        GetPokemon$Query$Pokemon instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'number': instance.number,
       'name': instance.name,
-      'industry': instance.industry,
-      '__typename': instance.$$typename,
     };
 
-CompaniesPaginatedData$Query _$CompaniesPaginatedData$QueryFromJson(
-    Map<String, dynamic> json) {
-  return CompaniesPaginatedData$Query()
-    ..allCompaniesPaginated = (json['allCompaniesPaginated'] as List)
-        ?.map((e) => e == null
-            ? null
-            : CompaniesPaginatedData$Query$AllCompaniesPaginated.fromJson(
-                e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$CompaniesPaginatedData$QueryToJson(
-        CompaniesPaginatedData$Query instance) =>
-    <String, dynamic>{
-      'allCompaniesPaginated':
-          instance.allCompaniesPaginated?.map((e) => e?.toJson())?.toList(),
-    };
-
-PaginationInput _$PaginationInputFromJson(Map<String, dynamic> json) {
-  return PaginationInput(
-    limit: json['limit'] as int,
-    offset: json['offset'] as int,
-  );
-}
-
-Map<String, dynamic> _$PaginationInputToJson(PaginationInput instance) =>
-    <String, dynamic>{
-      'limit': instance.limit,
-      'offset': instance.offset,
-    };
-
-CompaniesData$Query$AllCompanies _$CompaniesData$Query$AllCompaniesFromJson(
-    Map<String, dynamic> json) {
-  return CompaniesData$Query$AllCompanies()
-    ..id = json['id'] as String
-    ..name = json['name'] as String
-    ..industry = json['industry'] as String
-    ..$$typename = json['__typename'] as String;
-}
-
-Map<String, dynamic> _$CompaniesData$Query$AllCompaniesToJson(
-        CompaniesData$Query$AllCompanies instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'industry': instance.industry,
-      '__typename': instance.$$typename,
-    };
-
-CompaniesData$Query _$CompaniesData$QueryFromJson(Map<String, dynamic> json) {
-  return CompaniesData$Query()
-    ..allCompanies = (json['allCompanies'] as List)
-        ?.map((e) => e == null
-            ? null
-            : CompaniesData$Query$AllCompanies.fromJson(
-                e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$CompaniesData$QueryToJson(
-        CompaniesData$Query instance) =>
-    <String, dynamic>{
-      'allCompanies': instance.allCompanies?.map((e) => e?.toJson())?.toList(),
-    };
-
-CompaniesPaginatedDataArguments _$CompaniesPaginatedDataArgumentsFromJson(
-    Map<String, dynamic> json) {
-  return CompaniesPaginatedDataArguments(
-    pagination: json['pagination'] == null
+GetPokemon$Query _$GetPokemon$QueryFromJson(Map<String, dynamic> json) {
+  return GetPokemon$Query()
+    ..pokemon = json['pokemon'] == null
         ? null
-        : PaginationInput.fromJson(json['pagination'] as Map<String, dynamic>),
+        : GetPokemon$Query$Pokemon.fromJson(
+            json['pokemon'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$GetPokemon$QueryToJson(GetPokemon$Query instance) =>
+    <String, dynamic>{
+      'pokemon': instance.pokemon?.toJson(),
+    };
+
+GetAllPokemons$Query$Pokemons _$GetAllPokemons$Query$PokemonsFromJson(
+    Map<String, dynamic> json) {
+  return GetAllPokemons$Query$Pokemons()
+    ..number = json['number'] as String
+    ..name = json['name'] as String;
+}
+
+Map<String, dynamic> _$GetAllPokemons$Query$PokemonsToJson(
+        GetAllPokemons$Query$Pokemons instance) =>
+    <String, dynamic>{
+      'number': instance.number,
+      'name': instance.name,
+    };
+
+GetAllPokemons$Query _$GetAllPokemons$QueryFromJson(Map<String, dynamic> json) {
+  return GetAllPokemons$Query()
+    ..pokemons = (json['pokemons'] as List)
+        ?.map((e) => e == null
+            ? null
+            : GetAllPokemons$Query$Pokemons.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$GetAllPokemons$QueryToJson(
+        GetAllPokemons$Query instance) =>
+    <String, dynamic>{
+      'pokemons': instance.pokemons?.map((e) => e?.toJson())?.toList(),
+    };
+
+GetPokemonArguments _$GetPokemonArgumentsFromJson(Map<String, dynamic> json) {
+  return GetPokemonArguments(
+    name: json['name'] as String,
   );
 }
 
-Map<String, dynamic> _$CompaniesPaginatedDataArgumentsToJson(
-        CompaniesPaginatedDataArguments instance) =>
+Map<String, dynamic> _$GetPokemonArgumentsToJson(
+        GetPokemonArguments instance) =>
     <String, dynamic>{
-      'pagination': instance.pagination?.toJson(),
+      'name': instance.name,
+    };
+
+GetAllPokemonsArguments _$GetAllPokemonsArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return GetAllPokemonsArguments(
+    first: json['first'] as int,
+  );
+}
+
+Map<String, dynamic> _$GetAllPokemonsArgumentsToJson(
+        GetAllPokemonsArguments instance) =>
+    <String, dynamic>{
+      'first': instance.first,
     };

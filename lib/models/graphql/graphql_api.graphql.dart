@@ -7,237 +7,227 @@ import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'graphql_api.graphql.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class CompaniesPaginatedData$Query$AllCompaniesPaginated with EquatableMixin {
-  CompaniesPaginatedData$Query$AllCompaniesPaginated();
-
-  factory CompaniesPaginatedData$Query$AllCompaniesPaginated.fromJson(
-          Map<String, dynamic> json) =>
-      _$CompaniesPaginatedData$Query$AllCompaniesPaginatedFromJson(json);
-
-  String id;
-
+mixin PokemonFragmentMixin {
+  String number;
   String name;
-
-  String industry;
-
-  @override
-  @JsonKey(name: '__typename')
-  String $$typename;
-
-  @override
-  List<Object> get props => [id, name, industry, $$typename];
-  Map<String, dynamic> toJson() =>
-      _$CompaniesPaginatedData$Query$AllCompaniesPaginatedToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class CompaniesPaginatedData$Query with EquatableMixin {
-  CompaniesPaginatedData$Query();
+class GetPokemon$Query$Pokemon with EquatableMixin, PokemonFragmentMixin {
+  GetPokemon$Query$Pokemon();
 
-  factory CompaniesPaginatedData$Query.fromJson(Map<String, dynamic> json) =>
-      _$CompaniesPaginatedData$QueryFromJson(json);
-
-  List<CompaniesPaginatedData$Query$AllCompaniesPaginated>
-      allCompaniesPaginated;
+  factory GetPokemon$Query$Pokemon.fromJson(Map<String, dynamic> json) =>
+      _$GetPokemon$Query$PokemonFromJson(json);
 
   @override
-  List<Object> get props => [allCompaniesPaginated];
-  Map<String, dynamic> toJson() => _$CompaniesPaginatedData$QueryToJson(this);
+  List<Object> get props => [number, name];
+  Map<String, dynamic> toJson() => _$GetPokemon$Query$PokemonToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class PaginationInput with EquatableMixin {
-  PaginationInput({@required this.limit, @required this.offset});
+class GetPokemon$Query with EquatableMixin {
+  GetPokemon$Query();
 
-  factory PaginationInput.fromJson(Map<String, dynamic> json) =>
-      _$PaginationInputFromJson(json);
+  factory GetPokemon$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetPokemon$QueryFromJson(json);
 
-  int limit;
-
-  int offset;
+  GetPokemon$Query$Pokemon pokemon;
 
   @override
-  List<Object> get props => [limit, offset];
-  Map<String, dynamic> toJson() => _$PaginationInputToJson(this);
+  List<Object> get props => [pokemon];
+  Map<String, dynamic> toJson() => _$GetPokemon$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class CompaniesData$Query$AllCompanies with EquatableMixin {
-  CompaniesData$Query$AllCompanies();
+class GetAllPokemons$Query$Pokemons with EquatableMixin, PokemonFragmentMixin {
+  GetAllPokemons$Query$Pokemons();
 
-  factory CompaniesData$Query$AllCompanies.fromJson(
-          Map<String, dynamic> json) =>
-      _$CompaniesData$Query$AllCompaniesFromJson(json);
-
-  String id;
-
-  String name;
-
-  String industry;
+  factory GetAllPokemons$Query$Pokemons.fromJson(Map<String, dynamic> json) =>
+      _$GetAllPokemons$Query$PokemonsFromJson(json);
 
   @override
-  @JsonKey(name: '__typename')
-  String $$typename;
-
-  @override
-  List<Object> get props => [id, name, industry, $$typename];
-  Map<String, dynamic> toJson() =>
-      _$CompaniesData$Query$AllCompaniesToJson(this);
+  List<Object> get props => [number, name];
+  Map<String, dynamic> toJson() => _$GetAllPokemons$Query$PokemonsToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class CompaniesData$Query with EquatableMixin {
-  CompaniesData$Query();
+class GetAllPokemons$Query with EquatableMixin {
+  GetAllPokemons$Query();
 
-  factory CompaniesData$Query.fromJson(Map<String, dynamic> json) =>
-      _$CompaniesData$QueryFromJson(json);
+  factory GetAllPokemons$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetAllPokemons$QueryFromJson(json);
 
-  List<CompaniesData$Query$AllCompanies> allCompanies;
+  List<GetAllPokemons$Query$Pokemons> pokemons;
 
   @override
-  List<Object> get props => [allCompanies];
-  Map<String, dynamic> toJson() => _$CompaniesData$QueryToJson(this);
+  List<Object> get props => [pokemons];
+  Map<String, dynamic> toJson() => _$GetAllPokemons$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class CompaniesPaginatedDataArguments extends JsonSerializable
-    with EquatableMixin {
-  CompaniesPaginatedDataArguments({@required this.pagination});
-
-  factory CompaniesPaginatedDataArguments.fromJson(Map<String, dynamic> json) =>
-      _$CompaniesPaginatedDataArgumentsFromJson(json);
-
-  final PaginationInput pagination;
+class GetPokemonArguments extends JsonSerializable with EquatableMixin {
+  GetPokemonArguments({@required this.name});
 
   @override
-  List<Object> get props => [pagination];
-  Map<String, dynamic> toJson() =>
-      _$CompaniesPaginatedDataArgumentsToJson(this);
+  factory GetPokemonArguments.fromJson(Map<String, dynamic> json) =>
+      _$GetPokemonArgumentsFromJson(json);
+
+  final String name;
+
+  @override
+  List<Object> get props => [name];
+  @override
+  Map<String, dynamic> toJson() => _$GetPokemonArgumentsToJson(this);
 }
 
-class CompaniesPaginatedDataQuery extends GraphQLQuery<
-    CompaniesPaginatedData$Query, CompaniesPaginatedDataArguments> {
-  CompaniesPaginatedDataQuery({this.variables});
+class GetPokemonQuery
+    extends GraphQLQuery<GetPokemon$Query, GetPokemonArguments> {
+  GetPokemonQuery({this.variables});
 
   @override
   final DocumentNode document = DocumentNode(definitions: [
+    FragmentDefinitionNode(
+        name: NameNode(value: 'pokemonFragment'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'Pokemon'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'number'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'name'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ])),
     OperationDefinitionNode(
         type: OperationType.query,
-        name: NameNode(value: 'CompaniesPaginatedData'),
+        name: NameNode(value: 'getPokemon'),
         variableDefinitions: [
           VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'pagination')),
+              variable: VariableNode(name: NameNode(value: 'name')),
               type: NamedTypeNode(
-                  name: NameNode(value: 'PaginationInput'), isNonNull: true),
+                  name: NameNode(value: 'String'), isNonNull: true),
               defaultValue: DefaultValueNode(value: null),
               directives: [])
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
-              name: NameNode(value: 'allCompaniesPaginated'),
+              name: NameNode(value: 'pokemon'),
               alias: null,
               arguments: [
                 ArgumentNode(
-                    name: NameNode(value: 'pagination'),
-                    value: VariableNode(name: NameNode(value: 'pagination')))
+                    name: NameNode(value: 'name'),
+                    value: VariableNode(name: NameNode(value: 'name')))
               ],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'name'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'industry'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
+                FragmentSpreadNode(
+                    name: NameNode(value: 'pokemonFragment'), directives: [])
               ]))
         ]))
   ]);
 
   @override
-  final String operationName = 'CompaniesPaginatedData';
+  final String operationName = 'getPokemon';
 
   @override
-  final CompaniesPaginatedDataArguments variables;
+  final GetPokemonArguments variables;
 
   @override
   List<Object> get props => [document, operationName, variables];
   @override
-  CompaniesPaginatedData$Query parse(Map<String, dynamic> json) =>
-      CompaniesPaginatedData$Query.fromJson(json);
+  GetPokemon$Query parse(Map<String, dynamic> json) =>
+      GetPokemon$Query.fromJson(json);
 }
 
-class CompaniesDataQuery
-    extends GraphQLQuery<CompaniesData$Query, JsonSerializable> {
-  CompaniesDataQuery();
+@JsonSerializable(explicitToJson: true)
+class GetAllPokemonsArguments extends JsonSerializable with EquatableMixin {
+  GetAllPokemonsArguments({@required this.first});
+
+  @override
+  factory GetAllPokemonsArguments.fromJson(Map<String, dynamic> json) =>
+      _$GetAllPokemonsArgumentsFromJson(json);
+
+  final int first;
+
+  @override
+  List<Object> get props => [first];
+  @override
+  Map<String, dynamic> toJson() => _$GetAllPokemonsArgumentsToJson(this);
+}
+
+class GetAllPokemonsQuery
+    extends GraphQLQuery<GetAllPokemons$Query, GetAllPokemonsArguments> {
+  GetAllPokemonsQuery({this.variables});
 
   @override
   final DocumentNode document = DocumentNode(definitions: [
-    OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'CompaniesData'),
-        variableDefinitions: [],
+    FragmentDefinitionNode(
+        name: NameNode(value: 'pokemonFragment'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(
+                name: NameNode(value: 'Pokemon'), isNonNull: false)),
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
-              name: NameNode(value: 'allCompanies'),
+              name: NameNode(value: 'number'),
               alias: null,
               arguments: [],
               directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'name'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ])),
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'getAllPokemons'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'first')),
+              type:
+                  NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'pokemons'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'first'),
+                    value: VariableNode(name: NameNode(value: 'first')))
+              ],
+              directives: [],
               selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'name'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'industry'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
+                FragmentSpreadNode(
+                    name: NameNode(value: 'pokemonFragment'), directives: [])
               ]))
         ]))
   ]);
 
   @override
-  final String operationName = 'CompaniesData';
+  final String operationName = 'getAllPokemons';
 
   @override
-  List<Object> get props => [document, operationName];
+  final GetAllPokemonsArguments variables;
+
   @override
-  CompaniesData$Query parse(Map<String, dynamic> json) =>
-      CompaniesData$Query.fromJson(json);
+  List<Object> get props => [document, operationName, variables];
+  @override
+  GetAllPokemons$Query parse(Map<String, dynamic> json) =>
+      GetAllPokemons$Query.fromJson(json);
 }

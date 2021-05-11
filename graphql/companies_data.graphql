@@ -1,8 +1,17 @@
-query CompaniesData {
-    allCompanies {
-        id
-        name
-        industry
-        __typename
+fragment pokemonFragment on Pokemon {
+    number
+    name
+}
+
+# graphql/pokemon.query.graphql
+query getPokemon($name: String!) {
+    pokemon(name: $name) {
+        ...pokemonFragment
+    }
+}
+
+query getAllPokemons($first: Int!) {
+    pokemons(first: $first) {
+        ...pokemonFragment
     }
 }

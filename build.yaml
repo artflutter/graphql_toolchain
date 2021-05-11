@@ -2,14 +2,24 @@ targets:
   $default:
     sources:
       - lib/**
+      - $package$
       - graphql/**
       - my.schema.graphql
     builders:
       artemis:
         options:
-          fragments_glob: graphql/fragments/common.graphql
+#          fragments_glob: graphql/fragments/common.graphql
           schema_mapping:
             - schema: my.schema.graphql
               queries_glob: graphql/*.graphql
               output: lib/models/graphql/graphql_api.dart
               naming_scheme: pathedWithFields
+          scalar_mapping:
+            - graphql_type: Money
+              dart_type: double
+            - graphql_type: Decimal
+              dart_type: double
+            - graphql_type: URL
+              dart_type: String
+            - graphql_type: DateTime
+              dart_type: DateTime

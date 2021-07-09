@@ -45,8 +45,8 @@ Map<String, dynamic> _$CompaniesPaginatedData$QueryToJson(
 
 PaginationInput _$PaginationInputFromJson(Map<String, dynamic> json) {
   return PaginationInput(
-    limit: json['limit'] as int,
-    offset: json['offset'] as int,
+    limit: json['limit'] as int?,
+    offset: json['offset'] as int?,
   );
 }
 
@@ -91,13 +91,14 @@ Map<String, dynamic> _$CompaniesData$QueryToJson(
 CompaniesPaginatedDataArguments _$CompaniesPaginatedDataArgumentsFromJson(
     Map<String, dynamic> json) {
   return CompaniesPaginatedDataArguments(
-    pagination:
-        PaginationInput.fromJson(json['pagination'] as Map<String, dynamic>),
+    pagination: json['pagination'] == null
+        ? null
+        : PaginationInput.fromJson(json['pagination'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$CompaniesPaginatedDataArgumentsToJson(
         CompaniesPaginatedDataArguments instance) =>
     <String, dynamic>{
-      'pagination': instance.pagination.toJson(),
+      'pagination': instance.pagination?.toJson(),
     };

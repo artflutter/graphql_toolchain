@@ -1,0 +1,29 @@
+schema {
+    mutation: Mutation
+}
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+"""
+A field whose value is a generic Universally Unique Identifier: https://en.wikipedia.org/wiki/Universally_unique_identifier.
+"""
+scalar UUID
+
+type LoggedInUser {
+    uuid: UUID!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    deletedAt: DateTime
+    username: String!
+}
+
+type Mutation {
+    login(
+        """The username of someone"""
+        identifier: String!
+        password: String!
+    ): LoggedInUser!
+}

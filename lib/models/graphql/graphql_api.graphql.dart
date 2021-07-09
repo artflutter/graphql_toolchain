@@ -51,14 +51,14 @@ class CompaniesPaginatedData$Query extends JsonSerializable
 
 @JsonSerializable(explicitToJson: true)
 class PaginationInput extends JsonSerializable with EquatableMixin {
-  PaginationInput({required this.limit, required this.offset});
+  PaginationInput({this.limit, this.offset});
 
   factory PaginationInput.fromJson(Map<String, dynamic> json) =>
       _$PaginationInputFromJson(json);
 
-  late int limit;
+  int? limit;
 
-  late int offset;
+  int? offset;
 
   @override
   List<Object?> get props => [limit, offset];
@@ -109,13 +109,13 @@ class CompaniesData$Query extends JsonSerializable with EquatableMixin {
 @JsonSerializable(explicitToJson: true)
 class CompaniesPaginatedDataArguments extends JsonSerializable
     with EquatableMixin {
-  CompaniesPaginatedDataArguments({required this.pagination});
+  CompaniesPaginatedDataArguments({this.pagination});
 
   @override
   factory CompaniesPaginatedDataArguments.fromJson(Map<String, dynamic> json) =>
       _$CompaniesPaginatedDataArgumentsFromJson(json);
 
-  late PaginationInput pagination;
+  final PaginationInput? pagination;
 
   @override
   List<Object?> get props => [pagination];
@@ -132,7 +132,7 @@ final COMPANIES_PAGINATED_DATA_QUERY_DOCUMENT = DocumentNode(definitions: [
         VariableDefinitionNode(
             variable: VariableNode(name: NameNode(value: 'pagination')),
             type: NamedTypeNode(
-                name: NameNode(value: 'PaginationInput'), isNonNull: true),
+                name: NameNode(value: 'PaginationInput'), isNonNull: false),
             defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],

@@ -13,3 +13,16 @@ targets:
               queries_glob: graphql/*.graphql
               output: lib/models/graphql/graphql_api.dart
               naming_scheme: pathedWithFields
+              to_json_exclude: true
+            - schema: lib/api/graphql/schema.graphql
+              output: lib/api/graphql/generated/graphql.dart
+              queries_glob: lib/api/graphql/{queries,mutations}/**.graphql
+          scalar_mapping:
+            - graphql_type: UUID
+              dart_type: String
+
+            - graphql_type: DateTime
+              dart_type: DateTime
+
+            - graphql_type: JWT
+              dart_type: String

@@ -22,7 +22,7 @@ type Employee {
 
 type Query {
     allCompanies: [Company!]
-    allCompaniesPaginated(pagination: PaginationInput!): [Company!]
+    allCompaniesPaginated(pagination: PaginationInput): [Company!]
     company(id: ID): Company
     employee(id: ID): Employee
 }
@@ -171,8 +171,8 @@ enum fake__loremSize {
 }
 
 input PaginationInput {
-    limit: Int!
-    offset: Int!
+    limit: Int
+    offset: Int
 }
 
 input fake__color {

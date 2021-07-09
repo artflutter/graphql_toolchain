@@ -7,8 +7,8 @@ final client = getClient(
 );
 
 GraphQLClient getClient({
-  @required String uri,
-  String subscriptionUri,
+  required String uri,
+  String? subscriptionUri,
 }) {
   Link link = HttpLink(uri);
 
@@ -30,7 +30,7 @@ GraphQLClient getClient({
   );
 }
 
-String uuidFromObject(Object object) {
+String? uuidFromObject(Object object) {
   if (object is Map<String, Object>) {
     final String typeName = object['__typename'] as String;
     final String id = object['id'].toString();
@@ -42,8 +42,8 @@ String uuidFromObject(Object object) {
 }
 
 ValueNotifier<GraphQLClient> clientFor({
-  @required String uri,
-  String subscriptionUri,
+  required String uri,
+  String? subscriptionUri,
 }) {
   Link link = HttpLink(uri);
   if (subscriptionUri != null) {
@@ -70,9 +70,9 @@ ValueNotifier<GraphQLClient> clientFor({
 /// We use the cache for all state management.
 class GraphqlProvider extends StatelessWidget {
   GraphqlProvider({
-    @required this.child,
-    @required String uri,
-    String subscriptionUri,
+    required this.child,
+    required String uri,
+    String? subscriptionUri,
   });
 
   final Widget child;

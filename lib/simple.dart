@@ -21,9 +21,9 @@ class _SimpleState extends State<Simple> {
           document: CompaniesDataQuery().document,
         ),
         builder: (
-          QueryResult result, {
-          Future<QueryResult> Function() refetch,
-          FetchMore fetchMore,
+          result, {
+          refetch,
+          fetchMore,
         }) {
           print(result.source);
           if (result.hasException) {
@@ -36,15 +36,27 @@ class _SimpleState extends State<Simple> {
             );
           }
 
-          final allCompanies =
-              CompaniesData$Query.fromJson(result.data).allCompanies;
+          final data = result.data;
+
+          if (data == null) {
+            return const Center(
+              child: Text('No data'),
+            );
+          }
+          final allCompanies = CompaniesData$Query.fromJson(data).allCompanies;
+
+          if (allCompanies == null) {
+            return const Center(
+              child: Text('No data'),
+            );
+          }
 
           return ListView.builder(
             itemBuilder: (_, index) {
               return ListTile(
                 leading: Text(_counter.toString()),
-                title: Text(allCompanies[index].name),
-                subtitle: Text(allCompanies[index].industry),
+                title: Text(allCompanies[index].name ?? ''),
+                subtitle: Text(allCompanies[index].industry ?? ''),
                 trailing: FlatButton.icon(
                     onPressed: () => setState(() => _counter++),
                     icon: Icon(Icons.plus_one),

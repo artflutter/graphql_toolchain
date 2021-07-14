@@ -62,6 +62,19 @@ CompaniesData$Query$AllCompanies _$CompaniesData$Query$AllCompaniesFromJson(
     ..id = json['id'] as String
     ..name = json['name'] as String?
     ..industry = json['industry'] as String?
+    ..logo = fromGraphQLUploadToDartMultipartFile(json['logo'] as MultipartFile)
+    ..logoSmall = fromGraphQLUploadNullableToDartMultipartFileNullable(
+        json['logoSmall'] as MultipartFile?)
+    ..productPhotos = fromGraphQLListUploadToDartListMultipartFile(
+        json['productPhotos'] as List<MultipartFile>)
+    ..productPhotosSmall =
+        fromGraphQLListUploadNullableToDartListMultipartFileNullable(
+            json['productPhotosSmall'] as List<MultipartFile?>)
+    ..moreImages = fromGraphQLListNullableUploadToDartListNullableMultipartFile(
+        json['moreImages'] as List<MultipartFile>?)
+    ..moreImagesSmall =
+        fromGraphQLListNullableUploadNullableToDartListNullableMultipartFileNullable(
+            json['moreImagesSmall'] as List<MultipartFile?>?)
     ..$$typename = json['__typename'] as String?;
 }
 
@@ -71,6 +84,20 @@ Map<String, dynamic> _$CompaniesData$Query$AllCompaniesToJson(
       'id': instance.id,
       'name': instance.name,
       'industry': instance.industry,
+      'logo': fromDartMultipartFileToGraphQLUpload(instance.logo),
+      'logoSmall': fromDartMultipartFileNullableToGraphQLUploadNullable(
+          instance.logoSmall),
+      'productPhotos':
+          fromDartListMultipartFileToGraphQLListUpload(instance.productPhotos),
+      'productPhotosSmall':
+          fromDartListMultipartFileNullableToGraphQLListUploadNullable(
+              instance.productPhotosSmall),
+      'moreImages':
+          fromDartListNullableMultipartFileToGraphQLListNullableUpload(
+              instance.moreImages),
+      'moreImagesSmall':
+          fromDartListNullableMultipartFileNullableToGraphQLListNullableUploadNullable(
+              instance.moreImagesSmall),
       '__typename': instance.$$typename,
     };
 

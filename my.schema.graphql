@@ -8,7 +8,13 @@ type Company {
     employees: [Employee!]
     id: ID!
     industry: String
+    logo: Upload!
+    logoSmall: Upload
+    moreImages: [Upload!]
+    moreImagesSmall: [Upload]
     name: String
+    productPhotos: [Upload!]!
+    productPhotosSmall: [Upload]!
 }
 
 type Employee {
@@ -216,5 +222,7 @@ input fake__options {
     useFullAddress: Boolean
 }
 
+
+scalar Upload
 
 scalar examples__JSON

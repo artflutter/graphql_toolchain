@@ -3,6 +3,12 @@ query CompaniesData {
         id
         name
         industry
+        logo
+        logoSmall
+        productPhotos
+        productPhotosSmall
+        moreImages
+        moreImagesSmall
         __typename
     }
 }

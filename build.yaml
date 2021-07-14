@@ -13,3 +13,19 @@ targets:
               queries_glob: graphql/*.graphql
               output: lib/models/graphql/graphql_api.dart
               naming_scheme: pathedWithFields
+          scalar_mapping:
+            - graphql_type: UUID
+              dart_type: String
+
+            - graphql_type: Upload
+              custom_parser_import: 'package:graphql_toolchain/artemis.dart'
+              dart_type:
+                name: MultipartFile
+                imports:
+                  - 'package:http/http.dart'
+
+            - graphql_type: DateTime
+              dart_type: DateTime
+
+            - graphql_type: JWT
+              dart_type: String

@@ -5,6 +5,8 @@ import 'package:artemis/artemis.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
+import 'package:http/http.dart';
+import 'package:graphql_toolchain/artemis.dart';
 part 'graphql_api.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -81,11 +83,54 @@ class CompaniesData$Query$AllCompanies extends JsonSerializable
 
   String? industry;
 
+  @JsonKey(
+      fromJson: fromGraphQLUploadToDartMultipartFile,
+      toJson: fromDartMultipartFileToGraphQLUpload)
+  late MultipartFile logo;
+
+  @JsonKey(
+      fromJson: fromGraphQLUploadNullableToDartMultipartFileNullable,
+      toJson: fromDartMultipartFileNullableToGraphQLUploadNullable)
+  MultipartFile? logoSmall;
+
+  @JsonKey(
+      fromJson: fromGraphQLListUploadToDartListMultipartFile,
+      toJson: fromDartListMultipartFileToGraphQLListUpload)
+  late List<MultipartFile> productPhotos;
+
+  @JsonKey(
+      fromJson: fromGraphQLListUploadNullableToDartListMultipartFileNullable,
+      toJson: fromDartListMultipartFileNullableToGraphQLListUploadNullable)
+  late List<MultipartFile?> productPhotosSmall;
+
+  @JsonKey(
+      fromJson: fromGraphQLListNullableUploadToDartListNullableMultipartFile,
+      toJson: fromDartListNullableMultipartFileToGraphQLListNullableUpload)
+  List<MultipartFile>? moreImages;
+
+  @JsonKey(
+      fromJson:
+          fromGraphQLListNullableUploadNullableToDartListNullableMultipartFileNullable,
+      toJson:
+          fromDartListNullableMultipartFileNullableToGraphQLListNullableUploadNullable)
+  List<MultipartFile?>? moreImagesSmall;
+
   @JsonKey(name: '__typename')
   String? $$typename;
 
   @override
-  List<Object?> get props => [id, name, industry, $$typename];
+  List<Object?> get props => [
+        id,
+        name,
+        industry,
+        logo,
+        logoSmall,
+        productPhotos,
+        productPhotosSmall,
+        moreImages,
+        moreImagesSmall,
+        $$typename
+      ];
   @override
   Map<String, dynamic> toJson() =>
       _$CompaniesData$Query$AllCompaniesToJson(this);
@@ -223,6 +268,42 @@ final COMPANIES_DATA_QUERY_DOCUMENT = DocumentNode(definitions: [
                   selectionSet: null),
               FieldNode(
                   name: NameNode(value: 'industry'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'logo'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'logoSmall'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'productPhotos'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'productPhotosSmall'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'moreImages'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'moreImagesSmall'),
                   alias: null,
                   arguments: [],
                   directives: [],

@@ -11,7 +11,10 @@ class CompaniesPaginatedBloc extends QueryBloc<CompaniesPaginatedData$Query> {
               WatchQueryOptions(
                 document: COMPANIES_PAGINATED_DATA_QUERY_DOCUMENT,
                 variables: CompaniesPaginatedDataArguments(
-                  pagination: PaginationInput(limit: 25, offset: 0),
+                  pagination: Nullable<PaginationInput>(
+                    PaginationInput(
+                        limit: Nullable<int>(25), offset: Nullable<int>(0)),
+                  ),
                 ).toJson(),
               ),
         );
@@ -20,10 +23,10 @@ class CompaniesPaginatedBloc extends QueryBloc<CompaniesPaginatedData$Query> {
     add(QueryEvent.fetchMore(
         options: FetchMoreOptions(
       variables: CompaniesPaginatedDataArguments(
-        pagination: PaginationInput(
-          limit: limit,
-          offset: offset,
-        ),
+        pagination: Nullable<PaginationInput>(PaginationInput(
+          limit: Nullable<int>(limit),
+          offset: Nullable<int>(offset),
+        )),
       ).toJson(),
       updateQuery: (dynamic previousResultData, dynamic fetchMoreResultData) {
         final List<dynamic> repos = <dynamic>[

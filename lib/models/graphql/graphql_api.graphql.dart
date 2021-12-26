@@ -9,6 +9,31 @@ import 'package:http/http.dart';
 import 'package:graphql_toolchain/artemis.dart';
 part 'graphql_api.graphql.g.dart';
 
+class Nullable<T> {
+  final T _value;
+
+  Nullable(this._value);
+
+  T get value => _value;
+}
+
+dynamic _nullableToJson<T>(T? value) {
+  if (value is Nullable?) {
+    final objectValue = value?.value;
+
+    if (objectValue is JsonSerializable) {
+      return objectValue.toJson();
+    }
+
+    return value?.value;
+  }
+  return null;
+}
+
+T? _nullableFromJson<T>(Object? value) {
+  throw Exception('From JSON is not supported.');
+}
+
 @JsonSerializable(explicitToJson: true)
 class CompaniesPaginatedData$Query$AllCompaniesPaginated
     extends JsonSerializable with EquatableMixin {
@@ -53,19 +78,29 @@ class CompaniesPaginatedData$Query extends JsonSerializable
 
 @JsonSerializable(explicitToJson: true)
 class PaginationInput extends JsonSerializable with EquatableMixin {
-  PaginationInput({required this.limit, required this.offset});
+  PaginationInput({this.limit, this.offset});
 
   factory PaginationInput.fromJson(Map<String, dynamic> json) =>
       _$PaginationInputFromJson(json);
 
-  late int limit;
+  @JsonKey(fromJson: _nullableFromJson, toJson: _nullableToJson)
+  final Nullable<int?>? limit;
 
-  late int offset;
+  @JsonKey(fromJson: _nullableFromJson, toJson: _nullableToJson)
+  final Nullable<int?>? offset;
 
   @override
   List<Object?> get props => [limit, offset];
   @override
-  Map<String, dynamic> toJson() => _$PaginationInputToJson(this);
+  Map<String, dynamic> toJson() =>
+      _excludeNullable(_$PaginationInputToJson(this));
+  @override
+  Map<String, dynamic> _excludeNullable(Map<String, dynamic> json) {
+    if (limit == null) json.remove('limit');
+    if (offset == null) json.remove('offset');
+
+    return json;
+  }
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -154,19 +189,26 @@ class CompaniesData$Query extends JsonSerializable with EquatableMixin {
 @JsonSerializable(explicitToJson: true)
 class CompaniesPaginatedDataArguments extends JsonSerializable
     with EquatableMixin {
-  CompaniesPaginatedDataArguments({required this.pagination});
+  CompaniesPaginatedDataArguments({this.pagination});
 
   @override
   factory CompaniesPaginatedDataArguments.fromJson(Map<String, dynamic> json) =>
       _$CompaniesPaginatedDataArgumentsFromJson(json);
 
-  late PaginationInput pagination;
+  @JsonKey(fromJson: _nullableFromJson, toJson: _nullableToJson)
+  final Nullable<PaginationInput?>? pagination;
 
   @override
   List<Object?> get props => [pagination];
   @override
   Map<String, dynamic> toJson() =>
-      _$CompaniesPaginatedDataArgumentsToJson(this);
+      _excludeNullable(_$CompaniesPaginatedDataArgumentsToJson(this));
+  @override
+  Map<String, dynamic> _excludeNullable(Map<String, dynamic> json) {
+    if (pagination == null) json.remove('pagination');
+
+    return json;
+  }
 }
 
 final COMPANIES_PAGINATED_DATA_QUERY_DOCUMENT = DocumentNode(definitions: [
@@ -177,7 +219,7 @@ final COMPANIES_PAGINATED_DATA_QUERY_DOCUMENT = DocumentNode(definitions: [
         VariableDefinitionNode(
             variable: VariableNode(name: NameNode(value: 'pagination')),
             type: NamedTypeNode(
-                name: NameNode(value: 'PaginationInput'), isNonNull: true),
+                name: NameNode(value: 'PaginationInput'), isNonNull: false),
             defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],

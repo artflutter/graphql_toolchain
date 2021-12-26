@@ -13,6 +13,7 @@ targets:
               queries_glob: graphql/*.graphql
               output: lib/models/graphql/graphql_api.dart
               naming_scheme: pathedWithFields
+              to_json_exclude: true
           scalar_mapping:
             - graphql_type: UUID
               dart_type: String

@@ -6,6 +6,8 @@ import 'package:graphql_toolchain/bloc.dart';
 import 'package:graphql_toolchain/graphql_provider.dart';
 import 'package:graphql_toolchain/simple.dart';
 
+import 'models/graphql/graphql_api.graphql.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initHiveForFlutter();
@@ -44,6 +46,23 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final test = CompaniesPaginatedDataArguments(
+      pagination: Nullable<PaginationInput>(
+        PaginationInput(limit: Nullable<int>(25)),
+      ),
+    ).toJson();
+
+    // final json = {
+    //   "pagination": {
+    //     "limit": 25,
+    //     "offset": 0,
+    //   }
+    // };
+    //
+    // final fromJson = CompaniesPaginatedDataArguments.fromJson(json);
+    //
+    print(test);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Select example"),

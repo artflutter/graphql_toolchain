@@ -1,7 +1,14 @@
 # This file was generated based on ".graphqlconfig". Do not edit manually.
 
+scalar UUID
+
 schema {
     query: Query
+    mutation: Mutation
+}
+
+type Mutation {
+    loginKitchen(kitchenPassword: String!, restaurantId: UUID!): Boolean!
 }
 
 type Company {

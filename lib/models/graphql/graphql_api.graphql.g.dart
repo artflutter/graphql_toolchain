@@ -7,15 +7,24 @@ part of 'graphql_api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+LoginKitchen$Mutation _$LoginKitchen$MutationFromJson(
+        Map<String, dynamic> json) =>
+    LoginKitchen$Mutation()..loginKitchen = json['loginKitchen'] as bool;
+
+Map<String, dynamic> _$LoginKitchen$MutationToJson(
+        LoginKitchen$Mutation instance) =>
+    <String, dynamic>{
+      'loginKitchen': instance.loginKitchen,
+    };
+
 CompaniesPaginatedData$Query$AllCompaniesPaginated
     _$CompaniesPaginatedData$Query$AllCompaniesPaginatedFromJson(
-        Map<String, dynamic> json) {
-  return CompaniesPaginatedData$Query$AllCompaniesPaginated()
-    ..id = json['id'] as String
-    ..name = json['name'] as String?
-    ..industry = json['industry'] as String?
-    ..$$typename = json['__typename'] as String?;
-}
+            Map<String, dynamic> json) =>
+        CompaniesPaginatedData$Query$AllCompaniesPaginated()
+          ..id = json['id'] as String
+          ..name = json['name'] as String?
+          ..industry = json['industry'] as String?
+          ..$$typename = json['__typename'] as String?;
 
 Map<String, dynamic> _$CompaniesPaginatedData$Query$AllCompaniesPaginatedToJson(
         CompaniesPaginatedData$Query$AllCompaniesPaginated instance) =>
@@ -27,14 +36,14 @@ Map<String, dynamic> _$CompaniesPaginatedData$Query$AllCompaniesPaginatedToJson(
     };
 
 CompaniesPaginatedData$Query _$CompaniesPaginatedData$QueryFromJson(
-    Map<String, dynamic> json) {
-  return CompaniesPaginatedData$Query()
-    ..allCompaniesPaginated = (json['allCompaniesPaginated'] as List<dynamic>?)
-        ?.map((e) =>
-            CompaniesPaginatedData$Query$AllCompaniesPaginated.fromJson(
-                e as Map<String, dynamic>))
-        .toList();
-}
+        Map<String, dynamic> json) =>
+    CompaniesPaginatedData$Query()
+      ..allCompaniesPaginated =
+          (json['allCompaniesPaginated'] as List<dynamic>?)
+              ?.map((e) =>
+                  CompaniesPaginatedData$Query$AllCompaniesPaginated.fromJson(
+                      e as Map<String, dynamic>))
+              .toList();
 
 Map<String, dynamic> _$CompaniesPaginatedData$QueryToJson(
         CompaniesPaginatedData$Query instance) =>
@@ -43,12 +52,11 @@ Map<String, dynamic> _$CompaniesPaginatedData$QueryToJson(
           instance.allCompaniesPaginated?.map((e) => e.toJson()).toList(),
     };
 
-PaginationInput _$PaginationInputFromJson(Map<String, dynamic> json) {
-  return PaginationInput(
-    limit: json['limit'] as int,
-    offset: json['offset'] as int,
-  );
-}
+PaginationInput _$PaginationInputFromJson(Map<String, dynamic> json) =>
+    PaginationInput(
+      limit: json['limit'] as int,
+      offset: json['offset'] as int,
+    );
 
 Map<String, dynamic> _$PaginationInputToJson(PaginationInput instance) =>
     <String, dynamic>{
@@ -57,26 +65,27 @@ Map<String, dynamic> _$PaginationInputToJson(PaginationInput instance) =>
     };
 
 CompaniesData$Query$AllCompanies _$CompaniesData$Query$AllCompaniesFromJson(
-    Map<String, dynamic> json) {
-  return CompaniesData$Query$AllCompanies()
-    ..id = json['id'] as String
-    ..name = json['name'] as String?
-    ..industry = json['industry'] as String?
-    ..logo = fromGraphQLUploadToDartMultipartFile(json['logo'] as MultipartFile)
-    ..logoSmall = fromGraphQLUploadNullableToDartMultipartFileNullable(
-        json['logoSmall'] as MultipartFile?)
-    ..productPhotos = fromGraphQLListUploadToDartListMultipartFile(
-        json['productPhotos'] as List<MultipartFile>)
-    ..productPhotosSmall =
-        fromGraphQLListUploadNullableToDartListMultipartFileNullable(
-            json['productPhotosSmall'] as List<MultipartFile?>)
-    ..moreImages = fromGraphQLListNullableUploadToDartListNullableMultipartFile(
-        json['moreImages'] as List<MultipartFile>?)
-    ..moreImagesSmall =
-        fromGraphQLListNullableUploadNullableToDartListNullableMultipartFileNullable(
-            json['moreImagesSmall'] as List<MultipartFile?>?)
-    ..$$typename = json['__typename'] as String?;
-}
+        Map<String, dynamic> json) =>
+    CompaniesData$Query$AllCompanies()
+      ..id = json['id'] as String
+      ..name = json['name'] as String?
+      ..industry = json['industry'] as String?
+      ..logo =
+          fromGraphQLUploadToDartMultipartFile(json['logo'] as MultipartFile)
+      ..logoSmall = fromGraphQLUploadNullableToDartMultipartFileNullable(
+          json['logoSmall'] as MultipartFile?)
+      ..productPhotos = fromGraphQLListUploadToDartListMultipartFile(
+          json['productPhotos'] as List<MultipartFile>)
+      ..productPhotosSmall =
+          fromGraphQLListUploadNullableToDartListMultipartFileNullable(
+              json['productPhotosSmall'] as List<MultipartFile?>)
+      ..moreImages =
+          fromGraphQLListNullableUploadToDartListNullableMultipartFile(
+              json['moreImages'] as List<MultipartFile>?)
+      ..moreImagesSmall =
+          fromGraphQLListNullableUploadNullableToDartListNullableMultipartFileNullable(
+              json['moreImagesSmall'] as List<MultipartFile?>?)
+      ..$$typename = json['__typename'] as String?;
 
 Map<String, dynamic> _$CompaniesData$Query$AllCompaniesToJson(
         CompaniesData$Query$AllCompanies instance) =>
@@ -101,13 +110,12 @@ Map<String, dynamic> _$CompaniesData$Query$AllCompaniesToJson(
       '__typename': instance.$$typename,
     };
 
-CompaniesData$Query _$CompaniesData$QueryFromJson(Map<String, dynamic> json) {
-  return CompaniesData$Query()
-    ..allCompanies = (json['allCompanies'] as List<dynamic>?)
-        ?.map((e) => CompaniesData$Query$AllCompanies.fromJson(
-            e as Map<String, dynamic>))
-        .toList();
-}
+CompaniesData$Query _$CompaniesData$QueryFromJson(Map<String, dynamic> json) =>
+    CompaniesData$Query()
+      ..allCompanies = (json['allCompanies'] as List<dynamic>?)
+          ?.map((e) => CompaniesData$Query$AllCompanies.fromJson(
+              e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$CompaniesData$QueryToJson(
         CompaniesData$Query instance) =>
@@ -115,13 +123,26 @@ Map<String, dynamic> _$CompaniesData$QueryToJson(
       'allCompanies': instance.allCompanies?.map((e) => e.toJson()).toList(),
     };
 
+LoginKitchenArguments _$LoginKitchenArgumentsFromJson(
+        Map<String, dynamic> json) =>
+    LoginKitchenArguments(
+      restaurantId: json['restaurantId'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$LoginKitchenArgumentsToJson(
+        LoginKitchenArguments instance) =>
+    <String, dynamic>{
+      'restaurantId': instance.restaurantId,
+      'password': instance.password,
+    };
+
 CompaniesPaginatedDataArguments _$CompaniesPaginatedDataArgumentsFromJson(
-    Map<String, dynamic> json) {
-  return CompaniesPaginatedDataArguments(
-    pagination:
-        PaginationInput.fromJson(json['pagination'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CompaniesPaginatedDataArguments(
+      pagination:
+          PaginationInput.fromJson(json['pagination'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CompaniesPaginatedDataArgumentsToJson(
         CompaniesPaginatedDataArguments instance) =>

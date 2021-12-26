@@ -1,0 +1,3 @@
+mutation loginKitchen($restaurantId: UUID!, $password: String!) {
+    loginKitchen(restaurantId: $restaurantId, kitchenPassword: $password)
+}

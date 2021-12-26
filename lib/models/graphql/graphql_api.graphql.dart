@@ -10,6 +10,21 @@ import 'package:graphql_toolchain/artemis.dart';
 part 'graphql_api.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
+class LoginKitchen$Mutation extends JsonSerializable with EquatableMixin {
+  LoginKitchen$Mutation();
+
+  factory LoginKitchen$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$LoginKitchen$MutationFromJson(json);
+
+  late bool loginKitchen;
+
+  @override
+  List<Object?> get props => [loginKitchen];
+  @override
+  Map<String, dynamic> toJson() => _$LoginKitchen$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class CompaniesPaginatedData$Query$AllCompaniesPaginated
     extends JsonSerializable with EquatableMixin {
   CompaniesPaginatedData$Query$AllCompaniesPaginated();
@@ -149,6 +164,79 @@ class CompaniesData$Query extends JsonSerializable with EquatableMixin {
   List<Object?> get props => [allCompanies];
   @override
   Map<String, dynamic> toJson() => _$CompaniesData$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class LoginKitchenArguments extends JsonSerializable with EquatableMixin {
+  LoginKitchenArguments({required this.restaurantId, required this.password});
+
+  @override
+  factory LoginKitchenArguments.fromJson(Map<String, dynamic> json) =>
+      _$LoginKitchenArgumentsFromJson(json);
+
+  late String restaurantId;
+
+  late String password;
+
+  @override
+  List<Object?> get props => [restaurantId, password];
+  @override
+  Map<String, dynamic> toJson() => _$LoginKitchenArgumentsToJson(this);
+}
+
+final LOGIN_KITCHEN_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'loginKitchen'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'restaurantId')),
+            type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'password')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'loginKitchen'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'restaurantId'),
+                  value: VariableNode(name: NameNode(value: 'restaurantId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'kitchenPassword'),
+                  value: VariableNode(name: NameNode(value: 'password')))
+            ],
+            directives: [],
+            selectionSet: null)
+      ]))
+]);
+
+class LoginKitchenMutation
+    extends GraphQLQuery<LoginKitchen$Mutation, LoginKitchenArguments> {
+  LoginKitchenMutation({required this.variables});
+
+  @override
+  final DocumentNode document = LOGIN_KITCHEN_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'loginKitchen';
+
+  @override
+  final LoginKitchenArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  LoginKitchen$Mutation parse(Map<String, dynamic> json) =>
+      LoginKitchen$Mutation.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)

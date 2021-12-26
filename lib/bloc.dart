@@ -10,6 +10,8 @@ import 'package:graphql_toolchain/graphql_provider.dart';
 import 'package:graphql_toolchain/models/graphql/graphql_api.graphql.dart';
 
 class Bloc extends StatefulWidget {
+  const Bloc({Key? key}) : super(key: key);
+
   @override
   _BlocState createState() => _BlocState();
 }
@@ -49,7 +51,7 @@ class _BlocState extends State<Bloc> {
       return ListView(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: const <Widget>[
             Icon(Icons.inbox),
             SizedBox(width: 8),
             Text('No data'),
@@ -58,8 +60,8 @@ class _BlocState extends State<Bloc> {
       ]);
     } else {
       return ListView.separated(
-        separatorBuilder: (_, __) => SizedBox(height: 8.0),
-        key: PageStorageKey('reports'),
+        separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+        key: const PageStorageKey('reports'),
         itemCount: itemCount,
         itemBuilder: (context, index) {
           state.maybeMap(
@@ -83,8 +85,8 @@ class _BlocState extends State<Bloc> {
                 return Column(
                   children: [
                     tile,
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: CircularProgressIndicator(),
                     ),
                   ],
@@ -103,7 +105,7 @@ class _BlocState extends State<Bloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Extended BLOC example'),
+        title: const Text('Extended BLOC example'),
       ),
       body: RefreshIndicator(
         onRefresh: () async => _handleRefreshStart(bloc),
@@ -113,10 +115,11 @@ class _BlocState extends State<Bloc> {
             builder: (_, state) {
               final child = state.when(
                   initial: () => Container(),
-                  loading: (_) => Center(child: CircularProgressIndicator()),
+                  loading: (_) =>
+                      const Center(child: CircularProgressIndicator()),
                   error: (error, __) => ListView(
-                        padding: EdgeInsets.all(16),
-                        children: [Text('Error')],
+                        padding: const EdgeInsets.all(16),
+                        children: const [Text('Error')],
                       ),
                   loaded: (data, _) {
                     _handleRefreshEnd();
@@ -129,7 +132,7 @@ class _BlocState extends State<Bloc> {
                   });
 
               return AnimatedSwitcher(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 child: child,
               );
             }),
@@ -149,7 +152,7 @@ String parseOperationException(OperationException error) {
   //   }
   // }
 
-  if (error.graphqlErrors != null && error.graphqlErrors.isNotEmpty) {
+  if (error.graphqlErrors.isNotEmpty) {
     final errors = error.graphqlErrors;
 
     return errors.first.message;

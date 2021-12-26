@@ -9,7 +9,7 @@ import 'package:graphql_toolchain/simple.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initHiveForFlutter();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 String get host {
@@ -21,6 +21,8 @@ String get host {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -32,34 +34,36 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: {
-          'simple': (_) => Simple(),
-          'bloc': (_) => Bloc(),
+          'simple': (_) => const Simple(),
+          'bloc': (_) => const Bloc(),
         },
-        home: Home(),
+        home: const Home(),
       ),
     );
   }
 }
 
 class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select example"),
+        title: const Text("Select example"),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text('Simple example'),
+            title: const Text('Simple example'),
             onTap: () => Navigator.of(context).pushNamed('simple'),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('BLOC example'),
+            title: const Text('BLOC example'),
             onTap: () => Navigator.of(context).pushNamed('bloc'),
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

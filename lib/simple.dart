@@ -3,6 +3,8 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:graphql_toolchain/models/graphql/graphql_api.graphql.dart';
 
 class Simple extends StatefulWidget {
+  const Simple({Key? key}) : super(key: key);
+
   @override
   _SimpleState createState() => _SimpleState();
 }
@@ -13,7 +15,7 @@ class _SimpleState extends State<Simple> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Simple example'),
+        title: const Text('Simple example'),
       ),
       body: Query(
         options: QueryOptions(
@@ -25,7 +27,6 @@ class _SimpleState extends State<Simple> {
           refetch,
           fetchMore,
         }) {
-          print(result.source);
           if (result.hasException) {
             return Text(result.exception.toString());
           }
@@ -59,8 +60,8 @@ class _SimpleState extends State<Simple> {
                 subtitle: Text(allCompanies[index].industry ?? ''),
                 trailing: FlatButton.icon(
                     onPressed: () => setState(() => _counter++),
-                    icon: Icon(Icons.plus_one),
-                    label: Text('')),
+                    icon: const Icon(Icons.plus_one),
+                    label: const Text('')),
               );
             },
             itemCount: allCompanies.length,

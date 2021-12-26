@@ -15,7 +15,7 @@ GraphQLClient getClient({
   if (subscriptionUri != null) {
     final WebSocketLink websocketLink = WebSocketLink(
       subscriptionUri,
-      config: SocketClientConfig(
+      config: const SocketClientConfig(
         autoReconnect: true,
         inactivityTimeout: Duration(seconds: 30),
       ),
@@ -34,9 +34,7 @@ String? uuidFromObject(Object object) {
   if (object is Map<String, Object>) {
     final String typeName = object['__typename'] as String;
     final String id = object['id'].toString();
-    if (typeName != null && id != null) {
-      return <String>[typeName, id].join('/');
-    }
+    return <String>[typeName, id].join('/');
   }
   return null;
 }
@@ -49,7 +47,7 @@ ValueNotifier<GraphQLClient> clientFor({
   if (subscriptionUri != null) {
     final WebSocketLink websocketLink = WebSocketLink(
       subscriptionUri,
-      config: SocketClientConfig(
+      config: const SocketClientConfig(
         autoReconnect: true,
         inactivityTimeout: Duration(seconds: 30),
       ),
@@ -69,11 +67,12 @@ ValueNotifier<GraphQLClient> clientFor({
 /// Wraps the root application with the `graphql_flutter` client.
 /// We use the cache for all state management.
 class GraphqlProvider extends StatelessWidget {
-  GraphqlProvider({
+  const GraphqlProvider({
+    Key? key,
     required this.child,
     required String uri,
     String? subscriptionUri,
-  });
+  }) : super(key: key);
 
   final Widget child;
 //  final ValueNotifier<GraphQLClient> client;

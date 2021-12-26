@@ -33,7 +33,7 @@ class CompaniesPaginatedBloc extends QueryBloc<CompaniesPaginatedData$Query> {
 
         fetchMoreResultData['allCompaniesPaginated'] = repos;
 
-        return fetchMoreResultData;
+        return fetchMoreResultData as Map<String, dynamic>;
       },
     )));
   }

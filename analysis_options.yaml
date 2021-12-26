@@ -1,0 +1,10 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude: [
+      lib/**/*.g.dart,
+      lib/**/*.graphql.dart,
+  ]
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false

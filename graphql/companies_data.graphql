@@ -1,14 +1,5 @@
-query CompaniesData {
-    allCompanies {
+mutation CreateKkmCheckDocument($data: KkmCheckDocumentCreateInput!) {
+    createKkmCheckDocument(data: $data) {
         id
-        name
-        industry
-        logo
-        logoSmall
-        productPhotos
-        productPhotosSmall
-        moreImages
-        moreImagesSmall
-        __typename
     }
 }

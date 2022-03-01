@@ -17,6 +17,42 @@ targets:
             - graphql_type: UUID
               dart_type: String
 
+            - graphql_type: timestamptz
+              dart_type: DateTime
+
+            - graphql_type: timestamp
+              dart_type: DateTime
+
+            - graphql_type: uuid
+              dart_type: String
+
+            - graphql_type: date
+              dart_type: DateTime
+
+            - graphql_type: numeric
+              dart_type: double
+
+            - graphql_type: interval
+              dart_type: String
+
+            - graphql_type: float8
+              dart_type: double
+
+            - graphql_type: geometry
+              dart_type: Map
+
+            - graphql_type: geography
+              dart_type: Map
+
+            - graphql_type: jsonb
+              dart_type: Map
+
+            - graphql_type: bigint
+              dart_type: int
+
+            - graphql_type: citext
+              dart_type: String
+
             - graphql_type: Upload
               custom_parser_import: 'package:graphql_toolchain/artemis.dart'
               dart_type:
